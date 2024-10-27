@@ -167,9 +167,8 @@ export default async function handler(
     conversation.forEach((msg: ConversationMessage) => {
       const { role, content } = msg;
       if (role && content) {
-        conversationText += `${
-          role.charAt(0).toUpperCase() + role.slice(1)
-        }: ${content}\n`;
+        conversationText += `${role.charAt(0).toUpperCase() + role.slice(1)
+          }: ${content}\n`;
       }
     });
 

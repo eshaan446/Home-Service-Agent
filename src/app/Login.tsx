@@ -38,20 +38,18 @@ export default function Login({
 
   return (
     <div
-      className={`flex items-center justify-center h-screen ${
-        isDarkMode
+      className={`flex items-center justify-center h-screen ${isDarkMode
           ? "bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
           : "bg-gradient-to-br from-blue-500 to-purple-600"
-      }`}
+        }`}
     >
       <div className="absolute top-5 right-5">
         <button
           onClick={toggleDarkMode}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
-            isDarkMode
+          className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${isDarkMode
               ? "bg-gray-700 text-gray-200 hover:bg-gray-600"
               : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-          }`}
+            }`}
         >
           {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
           {isDarkMode ? "Light Mode" : "Dark Mode"}

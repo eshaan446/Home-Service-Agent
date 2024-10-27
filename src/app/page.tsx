@@ -30,8 +30,8 @@ interface ConversationMessage {
 const systemPrompt = `You are a virtual Customer Support Assistant named Sarah for Minuteman, a plumbing and water-based heating service company. Your role is to respond to customer calls, schedule appointments, take messages, and answer basic questions.
 
         ### CURRENT TIME: ${DateTime.now()
-          .setZone("America/Chicago")
-          .toFormat("EEEE yyyy-MM-dd HH:mm:ss ZZZZ")} ###
+    .setZone("America/Chicago")
+    .toFormat("EEEE yyyy-MM-dd HH:mm:ss ZZZZ")} ###
 
         ### Your Business Address: 100 Garden Street Cambridge, MA 02138 ###
 
@@ -387,20 +387,17 @@ export default function Home() {
 
   return (
     <div
-      className={`flex flex-col h-screen ${
-        isDarkMode ? "dark:bg-gray-900" : "bg-gray-50"
-      } transition-colors duration-200`}
+      className={`flex flex-col h-screen ${isDarkMode ? "dark:bg-gray-900" : "bg-gray-50"
+        } transition-colors duration-200`}
     >
       <header
-        className={`shadow-sm p-4 transition-colors duration-200 ${
-          isDarkMode ? "bg-gray-800" : "bg-white"
-        }`}
+        className={`shadow-sm p-4 transition-colors duration-200 ${isDarkMode ? "bg-gray-800" : "bg-white"
+          }`}
       >
         <div className="max-w-4xl mx-auto flex justify-between items-center">
           <h1
-            className={`text-xl font-bold ${
-              isDarkMode ? "text-gray-200" : "text-gray-800"
-            }`}
+            className={`text-xl font-bold ${isDarkMode ? "text-gray-200" : "text-gray-800"
+              }`}
           >
             Customer Support Assistant
           </h1>
@@ -426,11 +423,10 @@ export default function Home() {
 
             <button
               onClick={() => setIsDarkMode(!isDarkMode)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
-                isDarkMode
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${isDarkMode
                   ? "bg-gray-700 text-gray-200 hover:bg-gray-600"
                   : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-              }`}
+                }`}
             >
               {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
               {isDarkMode ? "Light Mode" : "Dark Mode"}
@@ -441,30 +437,26 @@ export default function Home() {
 
       <div className="flex-1 max-w-4xl mx-auto w-full p-4 overflow-hidden flex flex-col">
         <div
-          className={`flex-1 overflow-y-auto rounded-lg shadow-sm p-4 ${
-            isDarkMode ? "bg-gray-800" : "bg-white"
-          }`}
+          className={`flex-1 overflow-y-auto rounded-lg shadow-sm p-4 ${isDarkMode ? "bg-gray-800" : "bg-white"
+            }`}
         >
           {messages.map((message, index) => (
             <div
               key={index}
-              className={`mb-4 flex ${
-                message.role === "user" ? "justify-end" : "justify-start"
-              }`}
+              className={`mb-4 flex ${message.role === "user" ? "justify-end" : "justify-start"
+                }`}
             >
               <div
-                className={`flex items-start gap-2 max-w-[80%] ${
-                  message.role === "user" ? "flex-row-reverse" : "flex-row"
-                }`}
+                className={`flex items-start gap-2 max-w-[80%] ${message.role === "user" ? "flex-row-reverse" : "flex-row"
+                  }`}
               >
                 <div
-                  className={`min-w-[32px] w-8 h-8 rounded-full flex items-center justify-center ${
-                    message.role === "user"
+                  className={`min-w-[32px] w-8 h-8 rounded-full flex items-center justify-center ${message.role === "user"
                       ? "bg-blue-500"
                       : isDarkMode
-                      ? "bg-gray-700"
-                      : "bg-white"
-                  }`}
+                        ? "bg-gray-700"
+                        : "bg-white"
+                    }`}
                 >
                   {message.role === "user" ? (
                     <User size={16} className="text-white" />
@@ -480,13 +472,12 @@ export default function Home() {
                 </div>
                 <div className="flex flex-col">
                   <div
-                    className={`rounded-lg p-3 ${
-                      message.role === "user"
+                    className={`rounded-lg p-3 ${message.role === "user"
                         ? "bg-blue-500 text-white"
                         : isDarkMode
-                        ? "bg-gray-700 text-gray-200"
-                        : "bg-gray-100 text-gray-800"
-                    }`}
+                          ? "bg-gray-700 text-gray-200"
+                          : "bg-gray-100 text-gray-800"
+                      }`}
                   >
                     <p className="text-sm">{message.content}</p>
                     <span className="text-xs opacity-75 mt-1 block">
@@ -496,11 +487,10 @@ export default function Home() {
                   {message.role === "assistant" && (
                     <button
                       onClick={() => speakMessage(message.content, index)}
-                      className={`self-start mt-1 p-1 transition-colors ${
-                        isDarkMode
+                      className={`self-start mt-1 p-1 transition-colors ${isDarkMode
                           ? "text-gray-400 hover:text-gray-200"
                           : "text-gray-500 hover:text-gray-700"
-                      }`}
+                        }`}
                       title={
                         speakingMessageId === index
                           ? "Stop speaking"
@@ -523,9 +513,8 @@ export default function Home() {
 
         {/* Input Area */}
         <div
-          className={`mt-4 rounded-lg shadow-sm p-4 relative ${
-            isDarkMode ? "bg-gray-800" : "bg-white"
-          }`}
+          className={`mt-4 rounded-lg shadow-sm p-4 relative ${isDarkMode ? "bg-gray-800" : "bg-white"
+            }`}
         >
           <div className="flex items-end gap-4">
             <div
@@ -549,28 +538,24 @@ export default function Home() {
                     : "Start call to begin chat..."
                 }
                 disabled={!isCallActive || isLoading}
-                className={`w-full resize-none rounded-lg border p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[80px] max-h-[160px] ${
-                  isDarkMode
+                className={`w-full resize-none rounded-lg border p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[80px] max-h-[160px] ${isDarkMode
                     ? "border-gray-600 bg-gray-700 text-gray-200"
                     : "border-gray-200 bg-white text-gray-800"
-                }`}
+                  }`}
               />
               {!isCallActive && showTooltip && (
                 <div
-                  className={`absolute inset-0 bg-opacity-50 flex items-center justify-center rounded-lg ${
-                    isDarkMode ? "bg-gray-700" : "bg-gray-100"
-                  }`}
+                  className={`absolute inset-0 bg-opacity-50 flex items-center justify-center rounded-lg ${isDarkMode ? "bg-gray-700" : "bg-gray-100"
+                    }`}
                 >
                   <div
-                    className={`p-2 rounded shadow-md flex items-center ${
-                      isDarkMode ? "bg-gray-800" : "bg-white"
-                    }`}
+                    className={`p-2 rounded shadow-md flex items-center ${isDarkMode ? "bg-gray-800" : "bg-white"
+                      }`}
                   >
                     <Info size={20} className="text-blue-500 mr-2" />
                     <span
-                      className={`text-sm ${
-                        isDarkMode ? "text-gray-200" : "text-gray-700"
-                      }`}
+                      className={`text-sm ${isDarkMode ? "text-gray-200" : "text-gray-700"
+                        }`}
                     >
                       Start call to communicate
                     </span>
