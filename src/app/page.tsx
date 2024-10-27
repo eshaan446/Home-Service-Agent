@@ -391,9 +391,6 @@ export default function Home() {
         isDarkMode ? "dark:bg-gray-900" : "bg-gray-50"
       } transition-colors duration-200`}
     >
-      <Toaster position="bottom-right" richColors expand={true} />
-
-      {/* Header */}
       <header
         className={`shadow-sm p-4 transition-colors duration-200 ${
           isDarkMode ? "bg-gray-800" : "bg-white"
@@ -427,7 +424,6 @@ export default function Home() {
               </button>
             )}
 
-            {/* Theme Toggle Button */}
             <button
               onClick={() => setIsDarkMode(!isDarkMode)}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
@@ -443,7 +439,6 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Chat Container */}
       <div className="flex-1 max-w-4xl mx-auto w-full p-4 overflow-hidden flex flex-col">
         <div
           className={`flex-1 overflow-y-auto rounded-lg shadow-sm p-4 ${
