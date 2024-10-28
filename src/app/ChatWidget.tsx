@@ -319,13 +319,12 @@ export default function ChatWidget({
 
   return (
     <div
-      className={`fixed bottom-5 right-5 w-80 h-[800px] bg-white dark:bg-gray-800 rounded-lg shadow-lg flex flex-col ${
+      className={`fixed bottom-0 right-0 md:bottom-5 md:right-5 w-full md:w-[390px] h-full md:h-[700px] bg-white dark:bg-gray-800 md:rounded-lg shadow-lg flex flex-col ${
         isDarkMode ? "dark" : ""
       }`}
-      style={{ width: "390px", height: "700px" }}
     >
       <div
-        className={`flex justify-between items-center p-3 border-b ${
+        className={`flex justify-between items-center p-4 md:p-3 border-b ${
           isDarkMode ? "border-gray-700" : "border-gray-200"
         }`}
       >
@@ -347,7 +346,7 @@ export default function ChatWidget({
         </div>
         <button
           onClick={onClose}
-          className={`p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700`}
+          className={`p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700`}
         >
           <X
             size={20}
@@ -356,7 +355,7 @@ export default function ChatWidget({
         </button>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-3">
+      <div className="flex-1 overflow-y-auto p-4 md:p-3">
         {messages.map((message, index) => (
           <div
             key={index}
@@ -365,12 +364,12 @@ export default function ChatWidget({
             }`}
           >
             <div
-              className={`flex items-start gap-2 max-w-[80%] ${
+              className={`flex items-start gap-2 max-w-[85%] md:max-w-[80%] ${
                 message.role === "user" ? "flex-row-reverse" : "flex-row"
               }`}
             >
               <div
-                className={`min-w-[32px] w-8 h-8 rounded-full flex items-center justify-center ${
+                className={`min-w-[32px] w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
                   message.role === "user"
                     ? "bg-blue-500"
                     : isDarkMode
@@ -392,7 +391,7 @@ export default function ChatWidget({
               </div>
               <div className="flex flex-col">
                 <div
-                  className={`rounded-lg p-3 ${
+                  className={`rounded-lg p-3 break-words ${
                     message.role === "user"
                       ? "bg-blue-500 text-white"
                       : isDarkMode
@@ -400,7 +399,9 @@ export default function ChatWidget({
                       : "bg-gray-100 text-gray-800"
                   }`}
                 >
-                  <p className="text-sm">{message.content}</p>
+                  <p className="text-sm whitespace-pre-wrap">
+                    {message.content}
+                  </p>
                   <span className="text-xs opacity-75 mt-1 block">
                     {message.timestamp}
                   </span>
@@ -408,7 +409,7 @@ export default function ChatWidget({
                 {message.role === "assistant" && (
                   <button
                     onClick={() => speakMessage(message.content, index)}
-                    className={`self-start mt-1 p-1 transition-colors ${
+                    className={`self-start mt-1 p-2 transition-colors ${
                       isDarkMode
                         ? "text-gray-400 hover:text-gray-200"
                         : "text-gray-500 hover:text-gray-700"
@@ -434,7 +435,7 @@ export default function ChatWidget({
       </div>
 
       <div
-        className={`p-3 border-t ${
+        className={`p-4 md:p-3 border-t ${
           isDarkMode ? "border-gray-700" : "border-gray-200"
         }`}
       >
@@ -455,7 +456,7 @@ export default function ChatWidget({
                 : "Start call to begin chat..."
             }
             disabled={!isCallActive || isLoading}
-            className={`flex-1 resize-none rounded-lg border p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[40px] max-h-[80px] ${
+            className={`flex-1 resize-none rounded-lg border p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[44px] max-h-[120px] ${
               isDarkMode
                 ? "border-gray-600 bg-gray-700 text-gray-200"
                 : "border-gray-200 bg-white text-gray-800"
@@ -464,7 +465,7 @@ export default function ChatWidget({
           <button
             onClick={handleSendMessage}
             disabled={!isCallActive || isLoading || !inputMessage.trim()}
-            className="p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <Send size={20} />
           </button>
@@ -472,7 +473,7 @@ export default function ChatWidget({
       </div>
 
       <div
-        className={`p-3 border-t ${
+        className={`p-4 md:p-3 border-t ${
           isDarkMode ? "border-gray-700" : "border-gray-200"
         } flex justify-center`}
       >
@@ -480,7 +481,7 @@ export default function ChatWidget({
           <button
             onClick={handleEndCall}
             disabled={isLoading}
-            className="flex items-center gap-2 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+            className="flex items-center gap-2 px-6 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
           >
             <PhoneOff size={20} />
             End Call
@@ -488,7 +489,7 @@ export default function ChatWidget({
         ) : (
           <button
             onClick={handleStartCall}
-            className="flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
+            className="flex items-center gap-2 px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
           >
             <Phone size={20} />
             Start Call

@@ -5,10 +5,18 @@ import { createClient, SupabaseClient } from "@supabase/supabase-js";
 import { DateTime } from "luxon";
 import { ConversationMessage, ExtractedData } from "./types";
 
+const currentDate: DateTime = DateTime.now().setZone("America/Chicago");
+const now: string = currentDate.toFormat("MM/dd/yyyy");
+const currentYear: number = currentDate.year;
+const currentDay: string = currentDate.toFormat("cccc");
+const currentTime: string = currentDate.toFormat(
+  "EEEE yyyy-MM-dd HH:mm:ss 'CDT'"
+);
+
 const agentPrompt: string = `
         You are an virtual Customer Support Assistant named Sarah for Minuteman, a plumbing and water-based heating service company. Your role is to respond to customer calls, schedule appointments, take messages, and answer basic questions.
 
-        ### CURRENT TIME: Thursday 2024-10-10 19:39:40 CDT ###
+        ### CURRENT TIME: ${currentTime} ###
 
         ### Your Business Address: 100 Garden Street Cambridge, MA 02138 ###
 
@@ -150,11 +158,6 @@ export default async function handler(
     const supabaseAnonKey: string = process.env.SUPABASE_ANON_KEY!;
     const supabase: SupabaseClient = createClient(supabaseUrl, supabaseAnonKey);
 
-    const currentDate: DateTime = DateTime.now();
-    const now: string = currentDate.toFormat("MM/dd/yyyy");
-    const currentYear: number = currentDate.year;
-    const currentDay: string = currentDate.toFormat("cccc");
-
     console.log(now, currentYear, currentDay);
 
     const data: { conversation?: ConversationMessage[] } = req.body;
@@ -167,8 +170,9 @@ export default async function handler(
     conversation.forEach((msg: ConversationMessage) => {
       const { role, content } = msg;
       if (role && content) {
-        conversationText += `${role.charAt(0).toUpperCase() + role.slice(1)
-          }: ${content}\n`;
+        conversationText += `${
+          role.charAt(0).toUpperCase() + role.slice(1)
+        }: ${content}\n`;
       }
     });
 
